@@ -1,6 +1,7 @@
+-- creating database
 create database hospital_management;
 
-
+-- creating tables
 
 CREATE TABLE branches (
     branch_id     INT PRIMARY KEY,

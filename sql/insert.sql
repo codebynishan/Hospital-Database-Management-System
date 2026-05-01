@@ -1,4 +1,4 @@
-
+-- inserting a  data to each tables
 INSERT INTO branches (branch_id, branch_name, city, address, phone, manager_name)
 VALUES
   (1, 'Apollo Kathmandu', 'Kathmandu', 'Maharajgunj, Ring Road, Kathmandu', '01-4444444', 'Dr. Ram Shrestha'),
