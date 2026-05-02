@@ -1,11 +1,10 @@
-# 🏥 Hospital Management System — Multi Branch
+# Hospital Management System
 
 A production-grade multi-branch hospital database built with
 PostgreSQL, demonstrating real-world Database Administrator
 (DBA) skills including schema design, stored procedures,
 indexing, role-based security, and automated backup/recovery.
 
----
 
 ## 📌 Project Overview
 
@@ -13,6 +12,7 @@ This project simulates a real hospital database system for
 a multi-branch hospital network . The database manages patients,
 doctors, appointments, medical records, prescriptions, billing,
 and payments across all branches.
+
 
 ### Problem This Project Solves
 
@@ -25,26 +25,25 @@ and payments across all branches.
 | No data security | Role-based access control for 5 user types |
 | No backup plan | Automated daily backup with pg_dump |
 
----
 
-## 🗄️ Database Design
+## Database Design
 
 ### ERD Diagram
 ![Hospital ERD](erd.png)
 
-### Tables (9 total)
 
-| Table | Description | Rows |
-|---|---|---|
-| branches | Hospital branch locations | 3 |
-| departments | Departments per branch | 9 |
-| doctors | Doctors assigned to branches | 12 |
-| patients | Registered patients | 20 |
-| appointments | Patient visits | 30 |
-| medical_records | Diagnosis per appointment | 19 |
-| prescriptions | Medicines prescribed | 20 |
-| bills | Bills per appointment | 19 |
-| payments | Payments against bills | 20 |
+
+| Table | Description |
+|---|---|
+| branches | Hospital branch locations |
+| departments | Departments per branch |
+| doctors | Doctors assigned to branches |
+| patients | Registered patients |
+| appointments | Patient visits |
+| medical_records | Diagnosis per appointment |
+| prescriptions | Medicines prescribed |
+| bills | Bills per appointment |
+| payments | Payments against bills |
 
 ### Relationships
 
@@ -62,9 +61,7 @@ and payments across all branches.
 | Appointment → Bill | One to One |
 | Bill → Payments | One to Many |
 
----
 
-## 🛠️ Technical Features
 
 ### 1. Schema Design
 - Fully normalized to 3NF
@@ -84,14 +81,11 @@ and payments across all branches.
 - `branch_revenue` — revenue report across all branches
 - `unpaid_bills_report` — all unpaid and overdue bills
 
-### 4. Triggers
-- `trigger_check_appointment_before_billing` — prevents billing cancelled appointments
-- `trigger_update_bill_status` — automatically updates bill status after payment
 
 ### 5. Indexes (9 total)
 - One index per table on most frequently searched column
 - Reduces query time from Sequential Scan to Index Scan
-- Verified using EXPLAIN ANALYZE
+
 
 ### 6. Role Based Security (5 roles)
 
@@ -109,6 +103,5 @@ and payments across all branches.
 - Recovery tested in separate database
 - Automated daily backup script
 
----
 
 ## 📁 Project Structure
