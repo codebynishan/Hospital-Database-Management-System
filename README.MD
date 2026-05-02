@@ -70,16 +70,16 @@ and payments across all branches.
 - UNIQUE constraints preventing double booking
 
 ### 2. Stored Procedures
-- `register_patient` — registers new patient with auto ID
-- `book_appointment` — books appointment with double booking check
-- `complete_appointment` — marks appointment complete and auto generates bill
-- `record_payment` — records payment and auto updates bill status
+- register_patient — registers new patient with auto ID
+- book_appointment — books appointment with double booking check
+- complete_appointment — marks appointment complete and auto generates bill
+- record_payment — records payment and auto updates bill status
 
 ### 3. Views
-- `patient_summary` — full patient profile with visit count and age
-- `doctor_schedule` — complete appointment schedule per doctor
-- `branch_revenue` — revenue report across all branches
-- `unpaid_bills_report` — all unpaid and overdue bills
+- patient_summary — full patient profile with visit count and age
+- doctor_schedule — complete appointment schedule per doctor
+- branch_revenue — revenue report across all branches
+- unpaid_bills_report — all unpaid and overdue bills
 
 
 ### 5. Indexes (9 total)
