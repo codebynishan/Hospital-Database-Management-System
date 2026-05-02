@@ -1,22 +1,114 @@
-# HospitalDB-System
+# 🏥 Hospital Management System — Multi Branch
 
-## Overview
-HospitalDB-System is a MySQL-based database  designed for managing a hospital system . 
-It includes tables for branches, departments, wards, rooms, patients, staff, doctors, appointments, admissions, billing, medications, and lab tests. 
-The database also supports analytics queries to monitor hospital operations, revenue, and staff performance.
+A production-grade multi-branch hospital database built with
+PostgreSQL, demonstrating real-world Database Administrator
+(DBA) skills including schema design, stored procedures,
+indexing, role-based security, and automated backup/recovery.
 
-## Features
-- Database schema for a hospital management system
-- Patient, staff, doctor, and appointment management
-- Room and ward occupancy tracking
-- Billing and payment tracking
-- Medication inventory management
-- Lab test and result management
-- Analytics queries for insights like:
-  - Most occupied wards and room types
-  - Doctors with highest appointments
-  - Revenue per month
-  - Top prescribed medicines
-  - Staff adherence to duty schedules
+---
 
+## 📌 Project Overview
 
+This project simulates a real hospital database system for
+a multi-branch hospital network . The database manages patients,
+doctors, appointments, medical records, prescriptions, billing,
+and payments across all branches.
+
+### Problem This Project Solves
+
+| Problem | Solution |
+|---|---|
+| No centralized patient records | Unified patients table across all branches |
+| Appointment double booking | Unique constraint on doctor + date + time |
+| Prescription errors | Prescriptions linked directly to appointments |
+| Billing confusion | Automatic bill generation via triggers |
+| No data security | Role-based access control for 5 user types |
+| No backup plan | Automated daily backup with pg_dump |
+
+---
+
+## 🗄️ Database Design
+
+### ERD Diagram
+![Hospital ERD](erd.png)
+
+### Tables (9 total)
+
+| Table | Description | Rows |
+|---|---|---|
+| branches | Hospital branch locations | 3 |
+| departments | Departments per branch | 9 |
+| doctors | Doctors assigned to branches | 12 |
+| patients | Registered patients | 20 |
+| appointments | Patient visits | 30 |
+| medical_records | Diagnosis per appointment | 19 |
+| prescriptions | Medicines prescribed | 20 |
+| bills | Bills per appointment | 19 |
+| payments | Payments against bills | 20 |
+
+### Relationships
+
+| Relationship | Type |
+|---|---|
+| Branch → Departments | One to Many |
+| Branch → Doctors | One to Many |
+| Branch → Patients | One to Many |
+| Branch → Appointments | One to Many |
+| Department → Doctors | One to Many |
+| Patient → Appointments | One to Many |
+| Doctor → Appointments | One to Many |
+| Appointment → Medical Record | One to One |
+| Appointment → Prescriptions | One to Many |
+| Appointment → Bill | One to One |
+| Bill → Payments | One to Many |
+
+---
+
+## 🛠️ Technical Features
+
+### 1. Schema Design
+- Fully normalized to 3NF
+- 11 foreign key relationships
+- CHECK constraints for data validation
+- UNIQUE constraints preventing double booking
+
+### 2. Stored Procedures
+- `register_patient` — registers new patient with auto ID
+- `book_appointment` — books appointment with double booking check
+- `complete_appointment` — marks appointment complete and auto generates bill
+- `record_payment` — records payment and auto updates bill status
+
+### 3. Views
+- `patient_summary` — full patient profile with visit count and age
+- `doctor_schedule` — complete appointment schedule per doctor
+- `branch_revenue` — revenue report across all branches
+- `unpaid_bills_report` — all unpaid and overdue bills
+
+### 4. Triggers
+- `trigger_check_appointment_before_billing` — prevents billing cancelled appointments
+- `trigger_update_bill_status` — automatically updates bill status after payment
+
+### 5. Indexes (9 total)
+- One index per table on most frequently searched column
+- Reduces query time from Sequential Scan to Index Scan
+- Verified using EXPLAIN ANALYZE
+
+### 6. Role Based Security (5 roles)
+
+| Role | Access |
+|---|---|
+| receptionist_role | patients, appointments |
+| doctor_role | medical records, prescriptions |
+| billing_role | bills, payments |
+| pharmacist_role | prescriptions only |
+| admin_role | full access |
+
+### 7. Backup & Recovery
+- Full backup using pg_dump custom format
+- Schema only and data only backups
+- Recovery tested in separate database
+- Automated daily backup script
+
+---
+
+## 📁 Project Structure
