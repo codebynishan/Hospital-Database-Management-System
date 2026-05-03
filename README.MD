@@ -6,7 +6,7 @@ PostgreSQL, demonstrating real-world Database Administrator
 indexing, role-based security, and automated backup/recovery.
 
 
-## 📌 Project Overview
+## Project Overview
 
 This project simulates a real hospital database system for
 a multi-branch hospital network . The database manages patients,
@@ -104,4 +104,4 @@ and payments across all branches.
 - Automated daily backup script
 
 
-## 📁 Project Structure
+
